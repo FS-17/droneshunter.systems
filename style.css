@@ -38,6 +38,7 @@ h1 {
 	margin: 0;
 	padding: .7em 0px;
 	text-decoration: underline #eF5F00;
+	-webkit-text-decoration-line: underline #eF5F00;
 	font-size: 2.5em;
 }
 
