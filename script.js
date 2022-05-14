@@ -1,14 +1,6 @@
 const MODEL_FILE_URL = "./model/model.json";
-const contaner = document.querySelectorAll(".container");
 const video = document.getElementById("webcam");
 const liveView = document.getElementById("liveView");
-const invisible = document.getElementById("invisible");
-const enableWebcamButton = document.getElementById("webcamButton");
-const loader = document.getElementsByClassName("loader")[0];
-const speed = document.getElementById("speed");
-const threshold = document.getElementById("Threshold");
-const predictionTable = document.getElementById("predictionTable");
-const changecamera = document.getElementById("changecamera");
 
 // Check if webcam access is supported.
 function getUserMediaSupported() {
@@ -19,7 +11,7 @@ function getUserMediaSupported() {
 // wants to activate it to call enableCam function which we will
 // define in the next step.
 if (getUserMediaSupported()) {
-  enableWebcamButton.addEventListener("click", enableCam);
+  document.getElementById("webcamButton").addEventListener("click", enableCam);
 } else {
   console.warn("getUserMedia() is not supported by your browser");
 }
@@ -31,6 +23,8 @@ function enableCam() {
 
   //edit video style and make width 100%
   video.style.width = "100%";
+
+  const contaner = document.querySelectorAll(".container");
 
   // add hidden to the style of the container.
   contaner[0].style.display = "none";
@@ -85,10 +79,10 @@ async function loadModel() {
   // Set the model in the global scope so we can use it in the predictWebcam
   window.model = model;
 
-  invisible.classList.remove("invisible");
+  document.getElementById("invisible").classList.remove("invisible");
 
   // remove the loader
-  loader.remove();
+  document.getElementsByClassName("loader")[0].remove();
 }
 
 loadModel();
@@ -118,7 +112,8 @@ function predictWebcam() {
     predictions = null;
 
     // score threshold to filter out objects.
-    const scoresThreshold = Number("0." + threshold.value) + 0.3;
+    const scoresThreshold =
+      Number("0." + document.getElementById("Threshold").value) + 0.3;
 
     // organize the data into a list of objects.
     const detectionObjects = buildDetectedObjects(
@@ -165,7 +160,7 @@ function predictWebcam() {
       const time = new Date().toLocaleTimeString();
 
       // add to the predictionTable the data.
-      const row = predictionTable.insertRow(1);
+      const row = document.getElementById("predictionTable").insertRow(1);
       const cell1 = row.insertCell(0);
       const cell2 = row.insertCell(1);
       cell2.classList.add("centd");
@@ -179,7 +174,7 @@ function predictWebcam() {
   setTimeout(function () {
     window.requestAnimationFrame(predictWebcam);
     //the time that we want to wait between each frame.
-  }, 2400 / speed.value);
+  }, 2400 / document.getElementById("speed").value);
 }
 
 function buildDetectedObjects(
