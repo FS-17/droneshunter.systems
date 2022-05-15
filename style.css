@@ -264,8 +264,8 @@ only screen and (max-device-width: 768px) {
 		background: rgba(186, 186, 186, 0.22);
 		border-radius: 16px;
 		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(6.2px);
-		-webkit-backdrop-filter: blur(6.2px);
+		backdrop-filter: blur(3.2px);
+		-webkit-backdrop-filter: blur(3.2px);
 		border: 1px solid rgba(230, 230, 230, 1);
 
 	}
