@@ -119,8 +119,8 @@ function predictWebcam() {
     const detectionObjects = buildDetectedObjects(
       scores,
       scoresThreshold,
-      liveView.clientWidth, // imageWidth
-      liveView.clientHeight, // imageHeight
+      document.getElementById("webcam").clientWidth, // imageWidth
+      document.getElementById("webcam").clientHeight, // imageHeight
       boxes,
       classes
     );
@@ -143,8 +143,8 @@ function predictWebcam() {
           "left: " +
           detectionObjects[i].bbox[0] +
           "px; top: " +
-          // +40 for the margin
-         (detectionObjects[i].bbox[1] + 40) +
+        // +40 for the margin
+          (detectionObjects[i].bbox[1] + 40) +
           "px; width: " +
           detectionObjects[i].bbox[2] +
           "px; height: " +
