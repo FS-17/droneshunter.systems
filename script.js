@@ -143,7 +143,8 @@ function predictWebcam() {
           "left: " +
           detectionObjects[i].bbox[0] +
           "px; top: " +
-          detectionObjects[i].bbox[1] +
+          // +40 for the margin
+         (detectionObjects[i].bbox[1] + 40) +
           "px; width: " +
           detectionObjects[i].bbox[2] +
           "px; height: " +
