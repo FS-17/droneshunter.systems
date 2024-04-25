@@ -15,7 +15,7 @@ DroneHunter Systems is a cutting-edge solution for monitoring and securing airsp
 - *User-friendly Interface*: The system provides an intuitive interface for users to monitor the airspace.
 
 
-![System Explanation](https://github.com/FS-17/droneshunter.systems/blob/main/images/Explanation.gif?raw=true)
+![System Explanation](https://github.com/FS-17/droneshunter.systems/blob/main/Explanation.gif?raw=true)
 
 
 ## Usage
