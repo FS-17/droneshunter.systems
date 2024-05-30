@@ -175,7 +175,7 @@ function predictWebcam() {
   setTimeout(function () {
     window.requestAnimationFrame(predictWebcam);
     //the time that we want to wait between each frame.
-  }, 2400 / document.getElementById("speed").value);
+  }, 3000 / document.getElementById("speed").value);
 }
 
 function buildDetectedObjects(
@@ -187,26 +187,23 @@ function buildDetectedObjects(
   classes
 ) {
   const detectionObjects = [];
-  scores.forEach((score, i) => {
-    if (score > threshold && classes[i] == "3") {
-      const bbox = [];
-      const minY = boxes[i * 4] * imageHeight;
-      const minX = boxes[i * 4 + 1] * imageWidth;
-      const maxY = boxes[i * 4 + 2] * imageHeight;
-      const maxX = boxes[i * 4 + 3] * imageWidth;
-      bbox[0] = minX;
-      bbox[1] = minY;
-      bbox[2] = maxX - minX;
-      bbox[3] = maxY - minY;
-
+  for (let i = 0; i < scores.length; i++) {
+    const score = scores[i];
+    const currentClass = classes[i];
+    if (score > threshold && currentClass === "3") {
+      const bbox = [
+        boxes[i * 4] * imageWidth,
+        boxes[i * 4 + 1] * imageHeight,
+        (boxes[i * 4 + 3] - boxes[i * 4 + 1]) * imageWidth,
+        (boxes[i * 4 + 2] - boxes[i * 4]) * imageHeight,
+      ];
       detectionObjects.push({
-        class: classes[i],
+        class: currentClass,
         score: score.toFixed(4),
         bbox: bbox,
       });
     }
-  });
-
+  }
   return detectionObjects;
 }
 
